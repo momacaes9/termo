@@ -1,5 +1,6 @@
 //! 4. Calculadora da Máquina Industrial Modelo Centrífuga
-//! (no Python essa parte existia mas nunca era chamada pelo menu).
+//!
+//! No Python essa parte existia mas nunca era chamada pelo menu.
 
 use crate::entrada::{ler_decimal, ler_linha};
 

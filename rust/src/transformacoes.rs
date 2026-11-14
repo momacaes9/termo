@@ -45,11 +45,14 @@ pub fn trabalho_simplificado(p: f64, v1: f64, v2: f64) -> f64 {
     p * (v2 - v1)
 }
 
+/// Função que resolve uma das leis: recebe os 4 valores e devolve (posição, valor).
+type Resolvedor = fn([Option<f64>; 4]) -> Option<(usize, f64)>;
+
 /// Pergunta as 4 grandezas e resolve a que ficou vazia.
 fn calcular_lei(
     nomes: [&str; 4],
     unidades: [&str; 4],
-    resolver: fn([Option<f64>; 4]) -> Option<(usize, f64)>,
+    resolver: Resolvedor,
 ) {
     let mut valores = [None; 4];
     for i in 0..4 {
@@ -76,7 +79,7 @@ fn calcular_lei(
 
     match resolver(valores) {
         Some((i, resultado)) => {
-            println!("O valor de {} é: {resultado:.4} {}", nomes[i], unidades[i])
+            println!("Resultado → {} = {resultado:.4} {}", nomes[i], unidades[i])
         }
         None => println!("Não foi possível calcular com esses dados."),
     }
@@ -100,7 +103,7 @@ pub fn executar() {
             println!("\nIsotérmica — Lei de Boyle-Mariotte: P1 × V1 = P2 × V2");
             println!("(Temperatura constante, pressão e volume são inversamente proporcionais)\n");
             calcular_lei(
-                ["a Pressão inicial P1", "o Volume inicial V1", "a Pressão final P2", "o Volume final V2"],
+                ["Pressão inicial P1", "Volume inicial V1", "Pressão final P2", "Volume final V2"],
                 ["Pa", "m³", "Pa", "m³"],
                 resolver_produto,
             );
@@ -111,7 +114,7 @@ pub fn executar() {
             println!("ATENÇÃO: As temperaturas devem estar em Kelvin (K)!");
             println!("(Dica: 25 °C = {} K)\n", celsius_para_kelvin(25.0));
             calcular_lei(
-                ["o Volume inicial V1", "a Temperatura inicial T1", "o Volume final V2", "a Temperatura final T2"],
+                ["Volume inicial V1", "Temperatura inicial T1", "Volume final V2", "Temperatura final T2"],
                 ["m³", "K", "m³", "K"],
                 resolver_razao,
             );
@@ -121,7 +124,7 @@ pub fn executar() {
             println!("(Volume constante, pressão e temperatura são diretamente proporcionais)");
             println!("ATENÇÃO: As temperaturas devem estar em Kelvin (K)!\n");
             calcular_lei(
-                ["a Pressão inicial P1", "a Temperatura inicial T1", "a Pressão final P2", "a Temperatura final T2"],
+                ["Pressão inicial P1", "Temperatura inicial T1", "Pressão final P2", "Temperatura final T2"],
                 ["Pa", "K", "Pa", "K"],
                 resolver_razao,
             );
