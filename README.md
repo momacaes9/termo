@@ -1,45 +1,47 @@
-# termo — Calculadora de Princípios da Termodinâmica
+# termo — Thermodynamics Principles Calculator
 
-Projeto final (capstone) da disciplina de **Introdução à Computação — Universidade Presbiteriana Mackenzie**.
+Capstone project for **Introduction to Computing — Universidade Presbiteriana Mackenzie**.
 
-Um programa de terminal com menu para estudar e calcular:
+A menu-driven terminal program for studying and calculating:
 
-| Opção | Tema | O que calcula |
+| Option | Topic | What it calculates |
 |---|---|---|
-| 1 | **Primeira Lei** (Conservação de Energia) | Q, W ou ΔU a partir de `Q = ΔU + W`; conversão cal → J |
-| 2 | **Transformações** (Leis dos Gases) | Isotérmica (Boyle-Mariotte), Isobárica (Charles), Isocórica (Gay-Lussac), Adiabática |
-| 3 | **Segunda Lei** (Máquinas Térmicas) | Rendimento de Carnot de refrigeradores/aquecedores e classificação BOM / MEDIANO / RUIM |
-| 4 | **Máquina Centrífuga** *(só na versão Rust)* | Força, rotações e potência nos modos Turbo/Eco e capacidades P/G |
+| 1 | **First Law** (Conservation of Energy) | Q, W or ΔU from `Q = ΔU + W`; cal → J conversion |
+| 2 | **Transformations** (Gas Laws) | Isothermal (Boyle-Mariotte), Isobaric (Charles), Isochoric (Gay-Lussac), Adiabatic |
+| 3 | **Second Law** (Heat Engines) | Carnot efficiency of refrigerators/heaters, rated GOOD / AVERAGE / POOR |
+| 4 | **Centrifuge Machine** *(Rust version only)* | Force, rotations and power in Turbo/Eco modes and S/L capacities |
 
-## Estrutura
+> The program itself (menus, prompts and output) is in Portuguese.
+
+## Structure
 
 ```
-python/   projeto original, exatamente como entregue (Google Colab)
-rust/     a mesma calculadora reescrita em Rust
+python/   original project, exactly as submitted (Google Colab)
+rust/     the same calculator rewritten in Rust
 ```
 
-## Versão em Python (original)
+## Python version (original)
 
 ```bash
 python3 python/projeto_de_programacao.py
 ```
 
-## Versão em Rust
+## Rust version
 
-Precisa do [Rust](https://www.rust-lang.org/tools/install) instalado.
+Requires [Rust](https://www.rust-lang.org/tools/install).
 
 ```bash
 cd rust
-cargo run      # roda a calculadora
-cargo test     # roda os testes automáticos das fórmulas
+cargo run      # run the calculator
+cargo test     # run the automated formula tests
 ```
 
-### O que muda na versão Rust
+### What's different in the Rust version
 
-- **Menu em loop**: depois de cada cálculo volta ao menu (no Python o programa terminava).
-- **Entradas validadas**: digitar uma letra não derruba o programa; aceita vírgula ou ponto decimal.
-- **Dados faltando**: na Primeira Lei e nas Leis dos Gases, deixar mais de um campo vazio mostra uma mensagem em vez de dar erro.
-- **Adiabática real**: usa `P·V^γ = constante` e `W = (P1·V1 − P2·V2)/(γ − 1)`, mostrando também o cálculo simplificado do projeto original para comparação.
-- **Segunda Lei**: usa 273,15 para converter °C → K, impede fonte quente mais fria que a fria, e mostra o COP ideal dos refrigeradores.
-- **Centrífuga**: a calculadora que existia no Python mas não estava no menu agora é a opção 4.
-- **Testes**: cada fórmula tem testes unitários (`cargo test`).
+- **Looping menu**: returns to the menu after each calculation (the Python version exited).
+- **Validated input**: typing a letter doesn't crash the program; decimals work with either a comma or a dot.
+- **Missing data**: in the First Law and Gas Laws calculators, leaving more than one field blank shows a message instead of an error.
+- **Real adiabatic process**: uses `P·V^γ = constant` and `W = (P1·V1 − P2·V2)/(γ − 1)`, and also shows the original project's simplified result for comparison.
+- **Second Law**: uses 273.15 for °C → K, rejects a hot source colder than the cold one, and shows the ideal COP for refrigerators.
+- **Centrifuge**: the calculator that existed in the Python file but wasn't in the menu is now option 4.
+- **Tests**: every formula has unit tests (`cargo test`).
