@@ -1,5 +1,7 @@
 # termo — Thermodynamics Principles Calculator
 
+[![Rust tests](https://github.com/momacaes9/termo/actions/workflows/rust.yml/badge.svg)](https://github.com/momacaes9/termo/actions/workflows/rust.yml)
+
 Capstone project for **Introduction to Computing — Universidade Presbiteriana Mackenzie**.
 
 A menu-driven terminal program for studying and calculating:
